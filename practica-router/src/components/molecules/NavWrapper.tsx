@@ -19,9 +19,17 @@ export const NavWrapper: React.FC<ILinkProps> = ({ linkActual, link1, link2 }) =
 
 
     //EL USE EFFECT CON UNA DEPENDENCIA ES DID UPDATE
-    //USE CALLBACK MEMORIZA LA FUNCION ENTONCES NO CAE EN UN LOOP EN EL RENDER, SI NO QUE SOLO ESPECIFICAMENTE SI CAMBIA LA DEPENDENCIA RENDERIZA
-    React.useCallback(() => {
-        linkContext.setOpacidadBtn('opacity-100 transition-opacity duration-200')
+    React.useEffect(() => {
+
+
+        if (linkContext.nombreLink !== "opacity-0") {
+            setTimeout(() => {
+                linkContext.setOpacidadBtn('opacity-100 transition-opacity duration-200')
+            }, 400)
+
+        }
+
+
     }, [linkContext.nombreLink])
 
 
