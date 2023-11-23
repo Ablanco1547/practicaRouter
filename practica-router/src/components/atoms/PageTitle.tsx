@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { useLinkContext } from '../../contexts/link'
 
 interface IlinkNameProps {
     linkName: string,
@@ -9,7 +10,21 @@ interface IlinkNameProps {
 
 
 export const PageTitle: React.FC<IlinkNameProps> = ({ linkName }) => {
+
+    const LinkContext = useLinkContext();
+
+    //USE EFFECT SIN DEPENDENCIAS ES DID MOUNT
+    React.useEffect(() => {
+
+        setTimeout(() => {
+            LinkContext.setNombreLink('opacity-100 transition-opacity duration-200 ease-in-out')
+        }, 400)
+
+
+    }, [])
+
+
     return (
-        <h1 className='font-bold text-5xl'>Esta es la página #{linkName}</h1>
+        <h1 className='font-bold text-5xl '>Esta es la página #<span className={LinkContext.nombreLink} >{linkName}</span></h1>
     )
 }
